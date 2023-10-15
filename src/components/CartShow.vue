@@ -12,6 +12,7 @@ const paymentMethod = ref('');
 
 const storeProduct = useProductStore()
 
+
 function formatNumberWithCommas(number) {
     const formattedNumber = Number(number).toFixed(2);
     return formattedNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");   
@@ -48,11 +49,12 @@ const placeOrder = () => {
             note: note.value,
             payment: paymentMethod.value,
         };
-        alert("สั่งซื้อสำเร็จ! ตรวจสอบรายละเอียดการสั่งซื้อได้ที่ รายการสั่งซื้อ \uD83D\uDE0E \uD83D\uDE0E ขอบคุณอย่างยิ่ง");
+        alert("สั่งซื้อสำเร็จ! ตรวจสอบรายละเอียดการสั่งซื้อได้ที่ รายการสั่งซื้อ \uD83D\uDE0E \uD83D\uDE0E \nขอบพระคุณอย่างยิ่ง");
         storeProduct.addOrder(orderData);
 
     }
 }
+
 
 const promptPayQRCodeURL = computed(() => {
     if (paymentMethod.value === 'PromptPay Qr Code') {
@@ -64,12 +66,14 @@ const promptPayQRCodeURL = computed(() => {
 </script>
 
 <template>
+    
+
+
     <div v-if="storeProduct.CartList.length === 0" class="incompletecart mb-3">
         <div class="outcon" >
             <div class="maincontainer mt-3">
                 <div class="carthead">
                     <h2>ตะกร้าสินค้า</h2>
-                    {{successModal}}
                 </div>
 
                 <div class="bd-example">
